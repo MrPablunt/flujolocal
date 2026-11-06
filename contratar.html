@@ -135,8 +135,9 @@
 <script>
 // Poner aquí el cobro vivo y toda la página deja de "pedir el anticipo por WhatsApp" y cobra sola.
 // Cualquier formato sirve: el correo de la cuenta PayPal (arma el checkout _xclick, no necesita perfil
-// PayPal.Me), paypal.me/usuario (se le anexa el monto), o una URL con {monto} para Clip u otra pasarela.
-const ENLACE_PAGO = "";
+// PayPal.Me), paypal.me/usuario (se le anexa el monto), una URL con {monto} para Clip u otra pasarela,
+// o el mapa por plan `esencial=…|pro=…|pro3=…` para links de monto fijo como los de Mercado Pago.
+const ENLACE_PAGO = "esencial=https://mpago.la/1ApUqDH|pro=https://mpago.la/2qg2AMC|pro3=https://mpago.la/12cDof7";
 const PHONE = "527771796162";
 const NOMBRES = { esencial: "Esencial", pro: "Pro", pro3: "Pro + 3 meses" };
 const montoDe = (n) => Number(String(n).replace(/[^0-9]/g, ""));
