@@ -139,7 +139,15 @@ body.recording .phone{height:min(820px,calc(100vh - 24px));box-shadow:none;borde
   <section class="cierre">
     <h2>¿Se parece a tu negocio?</h2>
     <p>Se configura con tus servicios, tus horarios y tu número: no cambias de WhatsApp. Te lo muestro con los datos de tu negocio en 5 minutos.</p>
-    <a href="https://wa.me/527771796162?text=Ya%20vi%20la%20demo%2C%20quiero%20una%20con%20mi%20negocio" rel="noopener">Escribir por WhatsApp</a>
+    <a id="cta-wa" href="https://wa.me/527771796162?text=Ya%20vi%20la%20demo%2C%20quiero%20una%20con%20mi%20negocio" rel="noopener">Escribir por WhatsApp</a>
+    <script>
+      // ?f=canal en la URL de la demo viaja dentro del mensaje para que el lead sepa de dónde llegó.
+      (function () {
+        var c = (new URLSearchParams(location.search).get("f") || "").replace(/[^a-z0-9_-]/gi, "").slice(0, 24);
+        if (c) document.getElementById("cta-wa").href =
+          "https://wa.me/527771796162?text=" + encodeURIComponent("Ya vi la demo, quiero una con mi negocio #f=" + c);
+      })();
+    </script>
   </section>
 </div>
 <div class="toast" id="toast"></div>

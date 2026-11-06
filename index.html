@@ -362,8 +362,13 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
   const PHONE = "527771796162";
   const MSG = "Hola, quiero el demo del asistente de WhatsApp para mi negocio";
 
+  // Cada publicación enlaza con ?f=canal (p. ej. ?f=facebook-grupos). El token viaja dentro del
+  // primer mensaje, el bot lo quita antes de entender la intención y queda como origen del lead.
+  const CANAL = (new URLSearchParams(location.search).get("f") || "").replace(/[^a-z0-9_-]/gi, "").slice(0, 24);
+  const TEXTO = MSG + (CANAL ? " #f=" + CANAL : "");
+
   document.querySelectorAll("[data-wa]").forEach(function (a) {
-    a.href = "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(MSG);
+    a.href = "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(TEXTO);
     a.target = "_blank";
     a.rel = "noopener";
   });
