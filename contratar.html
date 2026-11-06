@@ -18,6 +18,8 @@
 .plan ul{margin:0 0 12px;padding-left:18px;font-size:15px}.plan li{margin:5px 0}
 .pagar{display:block;width:100%;text-align:center;background:var(--d);color:#fff;text-decoration:none;padding:11px 14px;border-radius:10px;font-weight:600;margin-bottom:7px}
 .pagar:hover{background:#000}
+.pagar.espera{background:var(--g)}
+.pagar.espera::after{content:" · por WhatsApp";font-weight:400}
 .wa{display:block;width:100%;text-align:center;background:var(--g);color:#fff;text-decoration:none;padding:11px 14px;border-radius:10px;font-weight:600}
 .pedir{border:1px solid var(--lin);border-radius:14px;padding:18px;margin-top:26px}
 .pedir label{display:block;font-size:14px;color:#6b7c74;margin:10px 0 4px}
@@ -47,7 +49,7 @@
       <li>Agenda citas con horarios reales</li>
       <li>Reporte diario por WhatsApp</li>
     </ul>
-    <a class="pagar" href="https://paypal.me/pablunt1/1950MXN?country.x=MX&currency.x=MXN" target="_blank" rel="nofollow">Pagar anticipo $1,950</a>
+    <a class="pagar" data-anticipo="1950" href="#" rel="nofollow">Pagar anticipo $1,950</a>
     <a class="wa" data-wa="esencial" href="#" rel="nofollow">Quiero Esencial</a>
   </section>
 
@@ -62,7 +64,7 @@
       <li>Seguimiento automático de quien no cierra</li>
       <li>Encuesta post-cita y referidos</li>
     </ul>
-    <a class="pagar" href="https://paypal.me/pablunt1/3750MXN?country.x=MX&currency.x=MXN" target="_blank" rel="nofollow">Pagar anticipo $3,750</a>
+    <a class="pagar" data-anticipo="3750" href="#" rel="nofollow">Pagar anticipo $3,750</a>
     <a class="wa" data-wa="pro" href="#" rel="nofollow">Quiero Pro</a>
   </section>
 
@@ -76,7 +78,7 @@
       <li>Mensajería y reporte mensual sin costo</li>
       <li>Prioridad en cambios de flujo</li>
     </ul>
-    <a class="pagar" href="https://paypal.me/pablunt1/4950MXN?country.x=MX&currency.x=MXN" target="_blank" rel="nofollow">Pagar anticipo $4,950</a>
+    <a class="pagar" data-anticipo="4950" href="#" rel="nofollow">Pagar anticipo $4,950</a>
     <a class="wa" data-wa="pro3" href="#" rel="nofollow">Quiero Pro + 3 meses</a>
   </section>
 </div>
@@ -131,12 +133,21 @@
 </footer>
 
 <script>
+// Poner aquí el PayPal.Me / Clip vivo y todo el cobro automático se activa solo.
+const ENLACE_PAGO = "";
 const PHONE = "527771796162";
 const NOMBRES = { esencial: "Esencial", pro: "Pro", pro3: "Pro + 3 meses" };
+const montoDe = (n) => Number(String(n).replace(/[^0-9]/g, ""));
 const link = (plan, extra) => "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(extra + " #f=web-" + plan);
 document.querySelectorAll("[data-wa]").forEach(function (a) {
   const plan = a.getAttribute("data-wa");
   a.href = link(plan, "Hola, quiero contratar el plan " + NOMBRES[plan] + " de FlujoLocal");
+});
+document.querySelectorAll("[data-anticipo]").forEach(function (a) {
+  const monto = montoDe(a.getAttribute("data-anticipo"));
+  const plan = a.closest(".plan").querySelector("[data-wa]").getAttribute("data-wa");
+  if (ENLACE_PAGO) { a.href = ENLACE_PAGO.replace(//+$/, "") + "/" + monto + "MXN"; a.target = "_blank"; }
+  else { a.href = link(plan, "Hola, quiero aportar el anticipo de " + monto + " MXN para el plan " + NOMBRES[plan]); a.classList.add("espera"); }
 });
 document.getElementById("wa-top").href = link("contratar", "Hola, quiero contratar el asistente de WhatsApp de FlujoLocal");
 document.getElementById("f").addEventListener("submit", function (ev) {
