@@ -133,12 +133,27 @@
 </footer>
 
 <script>
-// Poner aquí el PayPal.Me / Clip vivo y todo el cobro automático se activa solo.
+// Poner aquí el cobro vivo y toda la página deja de "pedir el anticipo por WhatsApp" y cobra sola.
+// Cualquier formato sirve: el correo de la cuenta PayPal (arma el checkout _xclick, no necesita perfil
+// PayPal.Me), paypal.me/usuario (se le anexa el monto), o una URL con {monto} para Clip u otra pasarela.
 const ENLACE_PAGO = "";
 const PHONE = "527771796162";
 const NOMBRES = { esencial: "Esencial", pro: "Pro", pro3: "Pro + 3 meses" };
 const montoDe = (n) => Number(String(n).replace(/[^0-9]/g, ""));
 const link = (plan, extra) => "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(extra + " #f=web-" + plan);
+function pagoLink(base, monto, concepto) {
+  const b = String(base || "").trim();
+  const n = Math.round(Number(monto));
+  if (!b || !n) return "";
+  if (!/^https?:\/\//i.test(b) && /^[^\s@]+@[^\s@]+\.[a-z][a-z]{1,8}$/i.test(b))
+    return "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=" + encodeURIComponent(b) +
+      "&item_name=" + encodeURIComponent(concepto) + "&amount=" + n + "&currency_code=MXN&no_note=1&lc=MX";
+  if (/\{monto\}/i.test(b)) return b.replace(/\{monto\}/gi, String(n));
+  if (/\/\d+(\.\d+)?\s*(MXN|USD)\b/i.test(b)) return b;
+  const limpio = b.split("?")[0].replace(/\/+$/, "");
+  if (/(?:paypal\.me|paypal\.com\/paypalme)\/[^/?#]+$/i.test(limpio)) return limpio + "/" + n + "MXN";
+  return b;
+}
 document.querySelectorAll("[data-wa]").forEach(function (a) {
   const plan = a.getAttribute("data-wa");
   a.href = link(plan, "Hola, quiero contratar el plan " + NOMBRES[plan] + " de FlujoLocal");
@@ -146,7 +161,8 @@ document.querySelectorAll("[data-wa]").forEach(function (a) {
 document.querySelectorAll("[data-anticipo]").forEach(function (a) {
   const monto = montoDe(a.getAttribute("data-anticipo"));
   const plan = a.closest(".plan").querySelector("[data-wa]").getAttribute("data-wa");
-  if (ENLACE_PAGO) { a.href = ENLACE_PAGO.replace(//+$/, "") + "/" + monto + "MXN"; a.target = "_blank"; }
+  const vivo = pagoLink(ENLACE_PAGO, monto, "FlujoLocal " + NOMBRES[plan] + " (anticipo)");
+  if (vivo) { a.href = vivo; a.target = "_blank"; a.rel = "noopener"; }
   else { a.href = link(plan, "Hola, quiero aportar el anticipo de " + monto + " MXN para el plan " + NOMBRES[plan]); a.classList.add("espera"); }
 });
 document.getElementById("wa-top").href = link("contratar", "Hola, quiero contratar el asistente de WhatsApp de FlujoLocal");
