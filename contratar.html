@@ -141,10 +141,30 @@ const PHONE = "527771796162";
 const NOMBRES = { esencial: "Esencial", pro: "Pro", pro3: "Pro + 3 meses" };
 const montoDe = (n) => Number(String(n).replace(/[^0-9]/g, ""));
 const link = (plan, extra) => "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(extra + " #f=web-" + plan);
-function pagoLink(base, monto, concepto) {
+function pagoLink(base, monto, concepto, plan) {
   const b = String(base || "").trim();
   const n = Math.round(Number(monto));
   if (!b || !n) return "";
+  // Un link de Mercado Pago lleva el monto fijado en el panel, así que también se admite el mapa
+  // por plan: "esencial=https://…|pro=https://…|pro+3meses=https://…". Sin coincidencia no se
+  // manda la liga de otro monto: se deja el botón pidiendo el anticipo por WhatsApp.
+  if (/^[^:|;]+?=https?:\/\//i.test(b)) {
+    const tok = (x) => {
+      const s = String(x || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]/g, "");
+      if (s.indexOf("pro") === 0 && s.indexOf("3") > -1) return "pro3";
+      if (s.indexOf("pro") === 0) return "pro";
+      if (s.indexOf("esencial") === 0 || s.indexOf("basico") === 0) return "esencial";
+      return s;
+    };
+    const pares = {};
+    b.split(/[|;]/).forEach(function (p) {
+      const i = p.indexOf("=");
+      if (i < 1) return;
+      const url = p.slice(i + 1).trim();
+      if (/^https?:\/\//i.test(url)) pares[tok(p.slice(0, i))] = url;
+    });
+    return pares[tok(plan)] || "";
+  }
   if (!/^https?:\/\//i.test(b) && /^[^\s@]+@[^\s@]+\.[a-z][a-z]{1,8}$/i.test(b))
     return "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=" + encodeURIComponent(b) +
       "&item_name=" + encodeURIComponent(concepto) + "&amount=" + n + "&currency_code=MXN&no_note=1&lc=MX";
@@ -161,7 +181,7 @@ document.querySelectorAll("[data-wa]").forEach(function (a) {
 document.querySelectorAll("[data-anticipo]").forEach(function (a) {
   const monto = montoDe(a.getAttribute("data-anticipo"));
   const plan = a.closest(".plan").querySelector("[data-wa]").getAttribute("data-wa");
-  const vivo = pagoLink(ENLACE_PAGO, monto, "FlujoLocal " + NOMBRES[plan] + " (anticipo)");
+  const vivo = pagoLink(ENLACE_PAGO, monto, "FlujoLocal " + NOMBRES[plan] + " (anticipo)", plan);
   if (vivo) { a.href = vivo; a.target = "_blank"; a.rel = "noopener"; }
   else { a.href = link(plan, "Hola, quiero aportar el anticipo de " + monto + " MXN para el plan " + NOMBRES[plan]); a.classList.add("espera"); }
 });
