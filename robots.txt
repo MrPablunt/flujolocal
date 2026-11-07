@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /simular
-Sitemap: https://flujolocal-whfd6cmkk69.qoder.website/sitemap.xml
+Sitemap: https://mrpablunt.github.io/flujolocal/sitemap.xml
