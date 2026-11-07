@@ -6,6 +6,16 @@
 <title>Contratar el asistente de WhatsApp · FlujoLocal</title>
 <meta name="description" content="Elige plan, paga el anticipo de la mitad y queda apartado tu lugar de instalación. El asistente contesta, agenda y recuerda citas por WhatsApp en 5 días hábiles.">
 <link rel="canonical" href="https://flujolocal-whfd6cmkk69.qoder.website/contratar.html">
+<meta property="og:title" content="Contratar el asistente de WhatsApp · FlujoLocal">
+<meta property="og:description" content="Elija plan, pague el anticipo de la mitad y quede apartado su lugar de instalación. Esencial $3,900 · Pro $7,500 · Pro + 3 meses $9,900.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flujolocal-whfd6cmkk69.qoder.website/contratar.html">
+<meta property="og:image" content="https://flujolocal-whfd6cmkk69.qoder.website/img/social/precio.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tarifa de fundación FlujoLocal: Esencial $3,900, Pro $7,500, Pro + 3 meses $9,900">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://flujolocal-whfd6cmkk69.qoder.website/img/social/precio.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/seo.css">
 <style>
@@ -141,7 +151,10 @@ const ENLACE_PAGO = "esencial=https://mpago.la/1ApUqDH|pro=https://mpago.la/2qg2
 const PHONE = "527771796162";
 const NOMBRES = { esencial: "Esencial", pro: "Pro", pro3: "Pro + 3 meses" };
 const montoDe = (n) => Number(String(n).replace(/[^0-9]/g, ""));
-const link = (plan, extra) => "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(extra + " #f=web-" + plan);
+// El canal del anuncio (?f=fb-precio) manda sobre el "web-<plan>", si no todo post pagado de Facebook
+// quedaría atribuido a la página y no sabríamos qué pieza trajo el dinero.
+const CANAL = (new URLSearchParams(location.search).get("f") || "").replace(/[^a-z0-9_-]/gi, "").slice(0, 24);
+const link = (plan, extra) => "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(extra + " #f=" + (CANAL || "web-" + plan));
 function pagoLink(base, monto, concepto, plan) {
   const b = String(base || "").trim();
   const n = Math.round(Number(monto));
