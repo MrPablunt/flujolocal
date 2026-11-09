@@ -1,0 +1,39 @@
+# FlujoLocal
+
+> Asistente de WhatsApp para negocios locales de Morelos (Cuernavaca, Jiutepec, Temixco, Cuautla, Emiliano Zapata).
+> Se instala en el número que ya usa el negocio: contesta a los clientes, da precios, agenda citas y manda recordatorios.
+> Instalación en 5 días hábiles. Desde $3,900 MXN (tarifa de fundación), anticipo del 50 % a la firma.
+
+## Contacto
+- WhatsApp: 777 179 6162 (+527771796162)
+- Correo: ventasflujolocal@gmail.com
+- Sitio: https://mrpablunt.github.io/flujolocal/
+- Facebook: https://www.facebook.com/profile.php?id=61595817724339
+- Horario de atención: 9:00–21:00 (America/Mexico_City), martes a domingo
+
+## Qué es
+FlujoLocal es un servicio (no una app de reservas) que instala un asistente de WhatsApp en el número del
+negocio, conectado a la API de WhatsApp Cloud. El asistente responde preguntas de precios, horarios y
+ubicación, califica al prospecto, agenda citas en la agenda del negocio y manda recordatorios (24 h y 2 h).
+Cuando hace falta una persona, hay traspaso con aviso al dueño.
+
+## Qué NO es
+- No es una app: el cliente final sigue hablando por WhatsApp de siempre.
+- No hay testimonios publicados de clientes: todavía no hay clientes y no se inventan.
+- No se promete multiplicar ventas.
+
+## Precios publicados
+- Esencial: $3,900 MXN + $890 MXN al mes de operación
+- Pro: $7,500 MXN + $890 MXN al mes de operación
+- Pro + 3 meses de operación: $9,900 MXN
+
+## Cobertura
+19 municipios de Morelos × 32 giros = 608 páginas: https://mrpablunt.github.io/flujolocal/si/
+
+## Páginas clave
+- Portada: https://mrpablunt.github.io/flujolocal/
+- Cobertura por giro y ciudad: https://mrpablunt.github.io/flujolocal/si/
+- Guías de intención: https://mrpablunt.github.io/flujolocal/guias/
+- Ficha de marca y press kit: https://mrpablunt.github.io/flujolocal/marca.html
+- Calculadora de pérdida por no contestar: https://mrpablunt.github.io/flujolocal/perdida.html
+- Contratar: https://mrpablunt.github.io/flujolocal/contratar.html

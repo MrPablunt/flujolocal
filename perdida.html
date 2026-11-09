@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>¿Cuánto pierdes por no contestar WhatsApp? | FlujoLocal</title>
+<meta name="description" content="Calculadora gratuita: cuántos clientes y cuántos pesos se van al mes cuando tardas en contestar el WhatsApp de tu negocio. Con tus números, sin promesas.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://mrpablunt.github.io/flujolocal/perdida.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="FlujoLocal">
+<meta property="og:title" content="¿Cuánto pierdes por no contestar WhatsApp?">
+<meta property="og:description" content="Los números los pones tú. La cuenta la hace la calculadora. La respuesta la tiene tu WhatsApp.">
+<meta property="og:url" content="https://mrpablunt.github.io/flujolocal/perdida.html">
+<meta property="og:image" content="https://mrpablunt.github.io/flujolocal/img/social/precio.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/seo.css">
+<style>
+.calc{display:grid;gap:16px;margin:18px 0}
+@media(min-width:820px){.calc{grid-template-columns:1fr 1fr;align-items:start}}
+.caja{border:1px solid var(--lin);border-radius:16px;padding:20px;background:#fbfdfc}
+.campo{display:block;margin:0 0 16px}
+.campo span{display:block;font-weight:600;color:var(--d);margin-bottom:6px;font-size:15px}
+.campo small{display:block;color:#6b7c74;font-size:13px;margin-top:3px}
+.campo input{width:100%;padding:11px 12px;border:1px solid var(--lin);border-radius:10px;font-size:16px;background:#fff;color:var(--t)}
+.campo input:focus{outline:2px solid var(--g);outline-offset:1px}
+.rango{width:100%;accent-color:var(--g)}
+.resultado{background:var(--d);color:#e9f2ed;border-radius:16px;padding:22px}
+.resultado h3{color:#fff;margin-top:0}
+.big{font-size:38px;line-height:1.1;font-weight:700;color:#fff;margin:6px 0 2px}
+.big span{font-size:16px;font-weight:400;color:#a7bdb1;display:block;margin-top:6px}
+.linea{display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.12);padding:8px 0;font-size:15px;gap:12px}
+.linea b{color:#fff;font-weight:600;white-space:nowrap}
+.veredicto{margin-top:16px;padding:14px;border-radius:12px;background:rgba(18,163,80,.16);border-left:4px solid var(--g);font-size:15px}
+.frase{background:#fff;border:1px dashed var(--lin);border-radius:12px;padding:14px;margin-top:14px;font-size:15px}
+.nota small{color:#6b7c74}
+.wa-btn{display:inline-block;background:var(--g);color:#fff;text-decoration:none;padding:13px 18px;border-radius:10px;font-weight:600;margin-top:14px;border:none;font-size:15px;cursor:pointer}
+.wa-btn:hover{filter:brightness(.95)}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="./">FlujoLocal</a>
+  <span class="geo">Morelos, México</span>
+  <a class="btn btn-sm" data-wa href="#">Mandar mi resultado</a>
+</header>
+
+<main>
+<p class="bread"><a href="./">Inicio</a> › Calculadora de pérdida</p>
+
+<h1>¿Cuánto pierdes por no contestar WhatsApp?</h1>
+<p class="lead">No es una pregunta retórica: es una cuenta. Pones tus números —cuántos mensajes te llegan,
+cuántos dejas sin contestar, cuánto es tu venta promedio— y la calculadora te dice cuántos clientes y
+cuántos pesos se van al mes porque tardas en contestar. Sin registro y sin correos.</p>
+
+<div class="calc">
+  <div class="caja">
+    <h2 style="margin-top:0">Tus números</h2>
+
+    <label class="campo">
+      <span>WhatsApp mensajes que te llegan al día</span>
+      <input id="mensajes" type="number" min="0" max="2000" step="1" value="40">
+      <small>Cuenta los que te escriben preguntando precio o cita.</small>
+    </label>
+
+    <label class="campo">
+      <span>De esos, ¿cuántos NO contestas hoy?</span>
+      <input id="sinContestar" type="number" min="0" max="2000" step="1" value="8">
+      <small>Los que se te van cuando estabas ocupado, en el coche o con un cliente encima.</small>
+    </label>
+
+    <label class="campo">
+      <span>De cada 100 que no contestas, ¿cuántos clientes se te van?</span>
+      <input id="pct" type="number" min="0" max="100" step="1" value="20">
+      <small>Referencia: 20. Si en tu negocio se va menos gente, pon tu número, no el de aquí.</small>
+    </label>
+
+    <label class="campo">
+      <span>Tu venta promedio</span>
+      <input id="ticket" type="number" min="0" max="1000000" step="10" value="450">
+      <small>Lo que deja un cliente que sí te compró. En pesos.</small>
+    </label>
+
+    <label class="campo">
+      <span>Días que operas al mes</span>
+      <input id="dias" type="number" min="1" max="31" step="1" value="26">
+      <small>Los días que de verdad atiendes.</small>
+    </label>
+
+    <label class="campo">
+      <span>Qué tan rápido contestas hoy</span>
+      <input id="minutos" class="rango" type="range" min="5" max="240" step="5" value="60">
+      <small id="etiqueta-min">1 hora o más</small>
+    </label>
+
+    <p class="nota small" style="font-size:14px;color:#6b7c74">La cuenta es esta: mensajes sin contestar × porcentaje
+    que se va = clientes que pierdes. Clientes perdidos × tu venta promedio = pesos. Si un número no es el tuyo,
+    cámbialo: todo se recalcula.</p>
+  </div>
+
+  <div class="resultado" aria-live="polite">
+    <h3>Tu resultado</h3>
+    <div class="big" id="r-clientes">0<span>clientes que se te van al mes</span></div>
+    <div class="linea"><span>Pérdida cada mes</span><b id="r-mes">$0</b></div>
+    <div class="linea"><span>Rango si se va menos gente de la que supones</span><b id="r-rango">$0</b></div>
+    <div class="linea"><span>Pérdida en un año</span><b id="r-anio">$0</b></div>
+    <div class="linea"><span>Costo de contestarlos a tiempo</span><b id="r-costo">$0</b></div>
+    <div class="linea"><span>La instalación se paga sola en</span><b id="r-paga">—</b></div>
+    <div class="veredicto" id="r-veredicto">Cambia los números de la izquierda.</div>
+    <div class="frase" id="r-frase"></div>
+    <button type="button" class="wa-btn" id="r-wa">Mandar esto por WhatsApp</button>
+  </div>
+</div>
+
+<div class="local">
+  <p><strong>La cuenta, sin adornos:</strong> si al mes se te va la cantidad de clientes que te muestra esta
+  página, el asistente de FlujoLocal cuesta menos que lo que ya perdiste. Es una comparación, no una promesa:
+  el número de la izquierda sale de tus datos y el de la derecha es el precio publicado.</p>
+</div>
+
+<h2>Cómo lo instalamos</h2>
+<ul class="caja">
+  <li>El asistente se conecta con el mismo número que ya usa tu negocio: el cliente sigue viendo tu marca.</li>
+  <li>Contesta lo de siempre (precios, horarios, ubicación) y agenda citas, con tu catálogo.</li>
+  <li>Tu equipo solo entra cuando hace falta: hay un traspaso con aviso.</li>
+  <li>Instalación en 5 días hábiles y un diagnóstico de 30 minutos sin costo.</li>
+</ul>
+
+<h2>Preguntas frecuentes</h2>
+<details><summary>¿Es una estimación?</summary><p>Es aritmética con los números que capturaste tú: mensajes que te llegan, cuántos dejas sin contestar, qué porcentaje se va cuando tardas y cuánto es tu venta promedio. Si un dato no es el tuyo, cámbialo: el resultado se recalcula al instante.</p></details>
+<details><summary>¿Por qué 20%?</summary><p>Es un valor de referencia para que la calculadora arranque con algo, no un dato de mercado. El texto te pide cambiarlo por el tuyo, porque el que sabe cuántos clientes pierde por contestar tarde eres tú. Además, el resultado se muestra como rango: el número alto usa tu porcentaje y el bajo, la mitad.</p></details>
+<details><summary>¿Qué hago con el resultado?</summary><p>Mándalo por WhatsApp con el botón: te llega al número de FlujoLocal con tus números ya escritos, y se arma la demo con los datos de tu negocio.</p></details>
+
+<div class="cta">
+  <h3>¿Quieres el número con los datos de tu negocio?</h3>
+  <p>Mándanos un WhatsApp: en 52 segundos te montamos la demo con tu giro, tus servicios y tus precios.</p>
+  <a class="btn" data-wa href="#">Pedir la demo gratis</a>
+  <a class="btn ghost" href="contratar.html">Ver planes y precios</a>
+</div>
+
+<p class="nota nota"><small>Nota: esta página no guarda tus datos ni manda nada a un servidor: la cuenta se hace
+en tu navegador. Al mandar el resultado por WhatsApp sí nos llega, y ese mensaje queda en nuestro historial
+para poder atenderte.</small></p>
+</main>
+
+<footer>
+  <p>FlujoLocal · asistente de WhatsApp para negocios locales de Morelos</p>
+  <p><a href="./">Inicio</a> · <a href="si/">Cobertura</a> · <a href="guias/">Guías</a> · <a href="marca.html">Marca y press kit</a> · <a href="perdida.html">Calculadora de pérdida</a> · <a href="privacidad.html">Aviso de privacidad</a> · <a href="eliminacion.html">Baja de datos</a></p>
+</footer>
+<div class="barra-movil"><a data-wa href="#" rel="nofollow">Mandar mi resultado por WhatsApp</a></div>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://mrpablunt.github.io/flujolocal/perdida.html#page","name":"¿Cuánto pierdes por no contestar WhatsApp?","description":"Calculadora honesta: cuántos clientes y cuántos pesos se van al mes cuando el WhatsApp del negocio tarda en contestar.","url":"https://mrpablunt.github.io/flujolocal/perdida.html","isPartOf":{"@id":"https://mrpablunt.github.io/flujolocal/#site"},"about":{"@id":"https://mrpablunt.github.io/flujolocal/marca.html#brand"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Es una estimación?","acceptedAnswer":{"@type":"Answer","text":"Es aritmética con los números que capturaste tú: mensajes que te llegan, cuántos dejas sin contestar, qué porcentaje se va cuando tardas y cuánto es tu venta promedio. Si un dato no es el tuyo, cámbialo: el resultado se recalcula al instante."}},{"@type":"Question","name":"¿Por qué 20%?","acceptedAnswer":{"@type":"Answer","text":"Es un valor de referencia para que la calculadora arranque con algo, no un dato de mercado. El texto te pide cambiarlo por el tuyo, porque el que sabe cuántos clientes pierde por contestar tarde eres tú. Además, el resultado se muestra como rango: el número alto usa tu porcentaje y el bajo, la mitad."}},{"@type":"Question","name":"¿Qué hago con el resultado?","acceptedAnswer":{"@type":"Answer","text":"Mándalo por WhatsApp con el botón: te llega al número de FlujoLocal con tus números ya escritos, y se arma la demo con los datos de tu negocio."}}]}]}
+</script>
+<script>
+  const PHONE = "527771796162";
+  const CANAL = (new URLSearchParams(location.search).get("f") || "").replace(/[^a-z0-9_-]/gi, "").slice(0, 24);
+  const TEXTO_BASE = "Hola, quiero el demo del asistente de WhatsApp para mi negocio" + (CANAL ? " #f=" + CANAL : "");
+  document.querySelectorAll("[data-wa]").forEach(function (a) {
+    a.href = "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(TEXTO_BASE);
+    a.target = "_blank";
+    a.rel = "noopener";
+  });
+
+  const num = (id) => Math.max(0, Number(document.getElementById(id).value) || 0);
+  const money = (n) => "$" + Math.round(n).toLocaleString("es-MX");
+
+  function calcular() {
+    const mensajes = num("mensajes");
+    const sinContestar = num("sinContestar");
+    const pct = num("pct");
+    const ticket = num("ticket");
+    const dias = num("dias");
+    const minutos = num("minutos");
+
+    // Lo que se pierde es lo que NO se contesta: los mensajes que sí contestas no se pierden.
+    const sinRespaldo = Math.min(sinContestar, mensajes);
+    const clientes = sinRespaldo * dias * (pct / 100);
+    const perdida = clientes * ticket;
+    // Escenario conservador: la mitad de la tasa de fuga. Se muestra como rango, no como cifra única.
+    const conservador = (sinRespaldo * dias * (pct / 200)) * ticket;
+    const anual = perdida * 12;
+    const instalacion = 3900;
+    const operacion = 890;
+    const costoMes = instalacion + operacion;
+    const diasPago = perdida > 0 ? Math.ceil((costoMes / perdida) * 30) : null;
+
+    document.getElementById("r-clientes").innerHTML = Math.round(clientes) + "<span>clientes que se te van al mes</span>";
+    document.getElementById("r-mes").textContent = money(perdida);
+    document.getElementById("r-rango").textContent = money(conservador) + " – " + money(perdida);
+    document.getElementById("r-anio").textContent = money(anual);
+    document.getElementById("r-costo").textContent = money(costoMes) + " al mes";
+    document.getElementById("r-paga").textContent = diasPago ? diasPago + " días" : "—";
+
+    const etiqueta = document.getElementById("etiqueta-min");
+    etiqueta.textContent = minutos >= 60 ? (minutos === 60 ? "1 hora" : (minutos / 60).toFixed(1).replace(".0", "") + " horas") : minutos + " minutos";
+
+    let veredicto;
+    if (!mensajes || !ticket || !sinRespaldo) {
+      veredicto = "Pon tus números y el cálculo sale solo.";
+    } else if (perdida <= 0) {
+      veredicto = "Con estos números no pierdes clientes por tardar. Entonces el asistente no se paga solo: no te lo vendemos, y está bien.";
+    } else if (perdida >= costoMes * 3) {
+      veredicto = "Contestar a tiempo te cuesta menos que lo que ya pierdes. La diferencia entre ambos números es lo que te estás dejando en la mesa cada mes.";
+    } else if (perdida >= costoMes) {
+      veredicto = "Lo que pierdes ya paga el asistente. A partir de aquí, cada mensaje que contestas a tiempo es ganancia.";
+    } else {
+      veredicto = "Todavía no te sale. Con tus números, el asistente se paga en " + (diasPago || "—") + " días; si el volumen sube, se paga antes.";
+    }
+    document.getElementById("r-veredicto").textContent = veredicto;
+
+    const frase = "Me llegan " + mensajes + " mensajes al día, no contesto " + sinRespaldo + " y contesto en " + minutos + " minutos. Con mi venta promedio de " + money(ticket) + ", se me van unos " + Math.round(clientes) + " clientes al mes: " + money(perdida) + ". Quiero la demo del asistente.";
+    document.getElementById("r-frase").textContent = frase;
+    document.getElementById("r-wa").onclick = function () {
+      window.open("https://wa.me/" + PHONE + "?text=" + encodeURIComponent(frase + " #f=perdida"), "_blank");
+    };
+  }
+
+  ["mensajes", "sinContestar", "pct", "ticket", "dias", "minutos"].forEach(function (id) {
+    const el = document.getElementById(id);
+    el.addEventListener("input", calcular);
+    el.addEventListener("change", calcular);
+  });
+  calcular();
+</script>
+</body>
+</html>
