@@ -36,4 +36,5 @@ Cuando hace falta una persona, hay traspaso con aviso al dueño.
 - Guías de intención: https://mrpablunt.github.io/flujolocal/guias/
 - Ficha de marca y press kit: https://mrpablunt.github.io/flujolocal/marca.html
 - Calculadora de pérdida por no contestar: https://mrpablunt.github.io/flujolocal/perdida.html
+- Comparativa honesta de precios y condiciones: https://mrpablunt.github.io/flujolocal/comparativa.html
 - Contratar: https://mrpablunt.github.io/flujolocal/contratar.html
